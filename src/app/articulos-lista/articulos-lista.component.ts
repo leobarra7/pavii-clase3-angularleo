@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ArticuloFamilia } from '../models/articulofamilia';
 import { ArticulosFamilias } from '../models/articulosfamilias-collection';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-articulos-lista',
@@ -9,14 +10,16 @@ import { ArticulosFamilias } from '../models/articulosfamilias-collection';
 })
 export class ArticulosListaComponent implements OnInit {
 
+  id: string;
   listaArticulos: ArticuloFamilia[];
   verGrilla = false;
   mensajeBoton = 'Mostrar Grilla Articulos';
 
-  constructor() { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.listaArticulos = ArticulosFamilias;
+    this.id = this.route.snapshot.paramMap.get("id");
   }
 
   MostrarOcultarGrilla() {
